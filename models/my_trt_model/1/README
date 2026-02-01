@@ -1,0 +1,17 @@
+model.plan 파일을 이 디렉토리에 배치하세요.
+
+생성 방법:
+
+1. ONNX 모델 준비 후 trtexec로 변환:
+
+   trtexec \
+     --onnx=model.onnx \
+     --saveEngine=model.plan \
+     --fp16 \
+     --minShapes=input:1x3x224x224 \
+     --optShapes=input:8x3x224x224 \
+     --maxShapes=input:16x3x224x224
+
+2. 생성된 model.plan 파일을 이 디렉토리에 복사
+
+주의: TensorRT 엔진은 빌드한 GPU와 동일한 아키텍처에서만 동작합니다.
